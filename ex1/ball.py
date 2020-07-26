@@ -31,7 +31,9 @@ class MyScene:
         self.screen.fill(self.backglound_color)
         for b in self.ball_list:
             b.move()
-            pygame.draw.ellipse(self.screen, self.ball_color, (b.x - 5, b.y - 5, b.x + 5, b.y +5))
+            # args
+            # screen, color, (left position, size)
+            pygame.draw.ellipse(self.screen, self.ball_color, (b.x - 5, b.y - 5, 10, 10))
     
     def touch_began(self, touch):
         x, y = touch
