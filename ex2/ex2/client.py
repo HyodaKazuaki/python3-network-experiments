@@ -18,7 +18,7 @@ def main():
         sock.connect((host, port))
         print("Connected {}:{}".format(host, port))
         while True:
-            line = sys.stdin.readline().rstrip()
+            line = input('> ')
             if len(line) == 0:
                 break
             sock.send(line.encode('utf-8'))
