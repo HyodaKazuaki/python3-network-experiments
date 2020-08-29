@@ -1,9 +1,15 @@
+import argparse
 import socket
 import select
 
+parser = argparse.ArgumentParser(description='echo server')
+parser.add_argument('--address', default='127.0.0.1', help='Listen IP address')
+parser.add_argument('-p', '--port', default=8888, type=int, help='Port address')
+
 def main():
-    host = '127.0.0.1'
-    port = 8888
+    args = parser.parse_args()
+    host = args.address
+    port = args.port
     backlog = 10
     bufsize = 4096
 

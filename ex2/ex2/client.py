@@ -1,10 +1,16 @@
+import argparse
 import sys
 import socket
 from contextlib import closing
 
+parser = argparse.ArgumentParser(description='echo client')
+parser.add_argument('address', help='Destination IP address')
+parser.add_argument('-p', '--port', default=8888, type=int, help='Port address')
+
 def main():
-    host = '127.0.0.1'
-    port = 8888
+    args = parser.parse_args()
+    host = args.address
+    port = args.port
     bufsize = 4096
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
