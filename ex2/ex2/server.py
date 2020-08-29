@@ -18,6 +18,7 @@ def main():
     try:
         server_sock.bind((host, port))
         server_sock.listen(backlog)
+        print(f"Listen {host}:{port}")
 
         while True:
             rready, wready, xready = select.select(readfds, [], [])

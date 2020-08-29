@@ -16,6 +16,7 @@ def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     with closing(sock):
         sock.connect((host, port))
+        print(f"Connected {host}:{port}")
         while True:
             line = sys.stdin.readline().rstrip()
             if len(line) == 0:
