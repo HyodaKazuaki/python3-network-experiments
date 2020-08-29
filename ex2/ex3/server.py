@@ -44,6 +44,7 @@ def main():
                         readfds.remove(sock)
                     else:
                         print(msg)
+                        msg = msg.decode()
                         request_type, file_uri = msg.split(' ')
                         if request_type == 'GET':
                             file_path = os.path.join(source, file_uri)
