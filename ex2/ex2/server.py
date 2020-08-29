@@ -23,7 +23,6 @@ def main():
         while True:
             rready, wready, xready = select.select(readfds, [], [])
             for sock in rready:
-                print("Someone requesting")
                 if sock is server_sock:
                     conn, (remote_addr, remote_port) = server_sock.accept()
                     print("Accept connection {}:{}".format(remote_addr, remote_port))
