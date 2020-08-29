@@ -44,7 +44,7 @@ def main():
                         readfds.remove(sock)
                     else:
                         print(msg)
-                        msg = msg.decode()
+                        msg = msg.decode('utf-8')
                         request_type, file_uri = msg.split(' ')
                         if request_type == 'GET':
                             file_path = os.path.join(source, file_uri)
@@ -52,7 +52,7 @@ def main():
                             if os.path.isfile(file_path):
                                 with open(file_path) as f:
                                     response_data = f.read()
-                            sock.send(response_data)
+                            sock.send(response_data.encode('utf-8'))
     finally:
         for sock in readfds:
             sock.close()
