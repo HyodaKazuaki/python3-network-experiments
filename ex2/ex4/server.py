@@ -18,7 +18,7 @@ index_file_list = ["index.html", "index.htm"]
 def load_index_page(dir_path, not_found_page):
     for index_file in index_file_list:
         file_path = os.path.join(dir_path, index_file)
-        if os.path.exists(file_path):
+        if os.path.isfile(file_path):
             with open(file_path) as f:
                 return f.read()
     return not_found_page
@@ -56,6 +56,8 @@ def main():
                         msg = msg.decode('utf-8')
                         request_type, file_uri = msg.split(' ')
                         if request_type == 'GET':
+                            if file_uri[0] == '/':
+                                file_uri = '.' + file_uri
                             file_path = os.path.join(source, file_uri)
                             response_data = not_found
                             if os.path.isfile(file_path):
