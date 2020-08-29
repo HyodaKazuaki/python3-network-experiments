@@ -14,18 +14,20 @@ def main():
     bufsize = 4096
 
     server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    readfds = set([server_sock])
+    readfds = [server_sock]
     try:
         server_sock.bind((host, port))
         server_sock.listen(backlog)
-        print("Listen {0}:{1}".format(host, port))
+        print("Listen {}:{}".format(host, port))
 
         while True:
             rready, wready, xready = select.select(readfds, [], [])
             for sock in rready:
+                print("Someone requesting")
                 if sock is server_sock:
-                    conn, address = server_sock.accept()
-                    readfds.add(conn)
+                    conn, (remote_addr, remote_port) = server_sock.accept()
+                    print("Accept connection {}:{}".format(remote_addr, remote_port))
+                    readfds.append(conn)
                 else:
                     msg = sock.recv(bufsize)
                     if len(msg) == 0:
