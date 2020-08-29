@@ -20,7 +20,7 @@ def load_index_page(dir_path, not_found_page):
         file_path = os.path.join(dir_path, index_file)
         if os.path.exists(file_path):
             with open(file_path) as f:
-            return f.read()
+                return f.read()
     return not_found_page
 
 def main():
